@@ -96,7 +96,7 @@ func (tc *TFController) updateStatusSingle(tfjob *tfv1beta2.TFJob, rtype tfv1bet
 	} else {
 		if rtype == tfv1beta2.TFReplicaTypeWorker {
 			// All workers are succeeded or worker 0 completed, leave a succeeded condition.
-			if expected == 0 || worker0Completed {
+			if expected == 0 || (worker0Completed && *tfjob.Spec.SuccessPolicy != common.SuccessPolicyAllWorkers) {
 				msg := fmt.Sprintf("TFJob %s successfully completed.", tfjob.Name)
 				tc.Recorder.Event(tfjob, v1.EventTypeNormal, tfJobSucceededReason, msg)
 				if tfjob.Status.CompletionTime == nil {

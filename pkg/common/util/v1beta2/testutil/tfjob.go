@@ -102,6 +102,12 @@ func NewTFJobWithEvaluator(worker, ps, evaluator int) *tfv1beta2.TFJob {
 	return tfJob
 }
 
+func NewTFJobWithSuccessPolicy(worker, ps int, successPolicy common.SuccessPolicy) *tfv1beta2.TFJob {
+	tfJob := NewTFJob(worker, ps)
+	tfJob.Spec.SuccessPolicy = &successPolicy
+	return tfJob
+}
+
 func NewTFJob(worker, ps int) *tfv1beta2.TFJob {
 	tfJob := &tfv1beta2.TFJob{
 		TypeMeta: metav1.TypeMeta{

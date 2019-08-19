@@ -141,6 +141,15 @@ const (
 	CleanPodPolicyNone      CleanPodPolicy = "None"
 )
 
+// SuccessPolicy describes the policy to mark the TFJob as succeeded. Can be one
+// of: AllWorkers, or "" as default.
+type SuccessPolicy string
+
+const (
+	SuccessPolicyDefault    SuccessPolicy = ""
+	SuccessPolicyAllWorkers SuccessPolicy = "AllWorkers"
+)
+
 // RestartPolicy describes how the replicas should be restarted.
 // Can be one of: Always, OnFailure, Never, or ExitCode.
 // If none of the following policies is specified, the default one

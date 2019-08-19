@@ -55,6 +55,10 @@ type TFJobSpec struct {
 	// Defaults to Running.
 	CleanPodPolicy *common.CleanPodPolicy `json:"cleanPodPolicy,omitempty"`
 
+	// SuccessPolicy defines the policy to mark the TFJob as succeeded.
+	// Default to "", using the default rules.
+	SuccessPolicy *common.SuccessPolicy `json:"successPolicy,omitempty"`
+
 	// Defines the TTL for cleaning up finished TFJobs (temporary
 	// before kubernetes adds the cleanup controller).
 	// It may take extra ReconcilePeriod seconds for the cleanup, since
